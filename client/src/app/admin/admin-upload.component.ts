@@ -1,0 +1,3 @@
+import { Component } from '@angular/core';
+@Component({selector:'app-admin-upload', template: `<h2>Upload CSV</h2><form (submit)="upload($event)"><input type="file" name="file" accept=".csv"/><button class="btn btn-primary">Upload</button></form><pre>{{result | json}}</pre>`})
+export class AdminUploadComponent { result:any; async upload(e:any){ e.preventDefault(); const fd = new FormData(e.target); const token = localStorage.getItem('pcmate_token') || ''; const res = await fetch('/api/admin/upload-csv', { method: 'POST', body: fd, headers: { Authorization: 'Bearer ' + token } }); this.result = await res.json(); } }

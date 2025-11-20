@@ -1,0 +1,5 @@
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../services/products.service';
+import { CartService } from '../services/cart.service';
+@Component({selector:'app-products', template: `<h2>Products</h2><div class="row"><div class="col-md-4" *ngFor="let p of products"><div class="card mb-3"><div class="card-body"><h5>{{p.title}}</h5><p class="text-muted">{{p.subtitle}}</p><div class="d-flex justify-content-between align-items-center"><strong>{{p.price/100 | currency:'INR':'symbol'}}</strong><button class="btn btn-sm btn-primary" (click)="add(p)">Add</button></div></div></div></div></div>`})
+export class ProductsComponent implements OnInit { products:any[] = []; constructor(private ps: ProductsService, private cart: CartService) {} ngOnInit(){ this.ps.list().subscribe((res:any)=> this.products = res); } add(p:any){ this.cart.add(p); } }

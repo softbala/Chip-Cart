@@ -1,0 +1,1 @@
+import { Injectable } from '@angular/core'; @Injectable({providedIn:'root'}) export class CartService { items:any[] = []; add(p:any){ const f = this.items.find(i=>i.id===p.id); if(f) f.qty++; else this.items.push({...p, qty:1}); } clear(){ this.items = []; } }

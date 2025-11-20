@@ -1,0 +1,1 @@
+import { Component } from '@angular/core'; @Component({selector:'app-admin-dashboard', template:`<h2>Admin Dashboard</h2><ul><li><a routerLink="/admin/upload">Upload products (CSV)</a></li></ul>`}) export class AdminDashboardComponent {}

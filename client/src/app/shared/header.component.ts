@@ -1,0 +1,2 @@
+import { Component } from '@angular/core';
+@Component({selector:'app-header', template: `<header class="d-flex justify-content-between align-items-center py-3 mb-4"><div><h1 class="h4 m-0">PcMate</h1><div class="text-muted small">Parts • Upgrades • Builds</div></div><nav><a routerLink="/" class="me-3">Products</a><a routerLink="/cart" class="me-3">Cart</a><a routerLink="/admin" class="me-3">Admin</a></nav></header>`}) export class HeaderComponent {}

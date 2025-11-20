@@ -1,0 +1,4 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+@Component({selector:'app-admin-login', template: `<h2>Admin Login</h2><form (submit)="login($event)"><input name="username" class="form-control mb-2"/><input name="password" type="password" class="form-control mb-2"/><button class="btn btn-primary">Sign in</button></form>`})
+export class AdminLoginComponent { constructor(private router: Router) {} async login(e:any){ e.preventDefault(); const f = new FormData(e.target); const res = await fetch('/api/admin/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ username: f.get('username'), password: f.get('password') })}); const data = await res.json(); if(data.token){ localStorage.setItem('pcmate_token', data.token); alert('Logged in'); this.router.navigate(['/admin']); } else alert('Login failed'); } }

@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  server:
+    build: ./server
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Data Source=/data/pcmate.db
+      - Jwt__Key=dev_secret_change_me
+      - Admin__User=admin
+      - Admin__Pass=Password123!
+      - Paytm__Mid=YOUR_MID
+      - Paytm__MerchantKey=YOUR_MERCHANT_KEY
+    volumes:
+      - dbdata:/data
+  client:
+    build: ./client
+    ports:
+      - "4200:80"
+    depends_on:
+      - server
+volumes:
+  dbdata:
